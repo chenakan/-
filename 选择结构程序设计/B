@@ -1,0 +1,25 @@
+#include<stdio.h>
+int main()
+{
+    int n,f;
+   
+    scanf("%d",&n);
+    if(n>=1&&n<=100000)
+    {
+        if(n%2==0)
+        {
+            f=n/2;
+            printf("%d",f);
+        }
+        else
+        {
+            f=3*n+1;
+            printf("%d",f);
+        }
+    }
+    else 
+     {
+         printf("请输入符合条件的正整数n");
+     }
+    return 0;
+}
