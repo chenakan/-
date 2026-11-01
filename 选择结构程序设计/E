@@ -1,0 +1,20 @@
+#include<stdio.h>
+int main()
+{   
+    long long X,Y,Z;
+    scanf("%lld %lld",&X,&Y);
+    if(X>=1&&X<=Y&&Y<=1000000000000000000)
+    {
+        if(Y%X==0)
+        {
+            Z=X+Y;
+            printf("%lld\n",Z);
+        }
+        else
+        {
+            Z=Y-X;
+            printf("%lld\n",Z);
+        }
+    }
+    return 0;
+}
