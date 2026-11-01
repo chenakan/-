@@ -1,0 +1,27 @@
+#include<stdio.h>
+int main()
+{
+    int a,b;
+    scanf("%d %d",&a,&b);
+    
+    if(a>=1&&b<=10000)
+    {
+        if(a>b)
+        {
+            printf(">");
+        }
+        if(a==b)
+        {
+            printf("=");
+        }
+        if(a<b)
+        {
+            printf("<");
+        }
+    }
+    else
+    {
+        printf("请重新输入符合的整数\n");
+    }
+return 0;
+}
