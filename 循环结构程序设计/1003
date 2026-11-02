@@ -1,0 +1,25 @@
+#include<stdio.h>
+int main()
+{   char max_char;
+    while(scanf("%c",&max_char)!=EOF)
+    {   
+        int n=max_char-'A';
+        for(int i=0;i<=n;i++)
+        {
+            for(int j=0;j<n-i;j++)
+            {
+                printf(" ");
+            }
+            for(int ch='A';ch<='A'+i;ch++)
+            {
+                printf("%c",ch);
+            }
+            for(int ch='A'+i-1;ch>='A';ch--)
+            {
+                printf("%c",ch);
+            }
+            printf("\n");
+        }
+    }
+ return 0;
+}  
