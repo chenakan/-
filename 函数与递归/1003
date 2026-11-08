@@ -1,0 +1,95 @@
+#include <stdio.h>
+
+typedef unsigned long long ULL;
+
+ULL mul_mod(ULL a, ULL b, ULL mod)
+{
+    ULL result = 0;
+    while (b > 0)
+    {
+        if (b & 1)
+            result = (result + a) % mod;
+        a = (a + a) % mod;
+        b >>= 1;
+    }
+    return result;
+}
+
+ULL pow_mod(ULL a, ULL b, ULL mod)
+{
+    ULL result = 1;
+    while (b > 0)
+    {
+        if (b & 1)
+            result = mul_mod(result, a, mod);
+        a = mul_mod(a, a, mod);
+        b >>= 1;
+    }
+    return result;
+}
+
+int is_prime(ULL n)
+{
+    if (n < 2)
+        return 0;
+    if (n % 2 == 0)
+        return n == 2;
+
+    ULL d = n - 1;
+    int s = 0;
+
+    while (d % 2 == 0)
+    {
+        d /= 2;
+        s++;
+    }
+
+    ULL bases[] = {2, 325, 9375, 28178,
+                   450775, 9780504, 1795265022};
+
+    for (int i = 0; i < 7; i++)
+    {
+        ULL a = bases[i] % n;
+        if (a == 0)
+            continue;
+
+        ULL x = pow_mod(a, d, n);
+        if (x == 1 || x == n - 1)
+            continue;
+
+        int passed = 0;
+        for (int j = 1; j < s; j++)
+        {
+            x = mul_mod(x, x, n);
+            if (x == n - 1)
+            {
+                passed = 1;
+                break;
+            }
+        }
+
+        if (!passed)
+            return 0;
+    }
+
+    return 1;
+}
+
+int main(void)
+{
+    ULL t;
+    scanf("%llu", &t);
+
+    ULL palindrome = t;
+    ULL temp = t / 10;
+
+    while (temp > 0)
+    {
+        palindrome = palindrome * 10 + temp % 10;
+        temp /= 10;
+    }
+
+    printf("%s\n", is_prime(palindrome) ? "prime" : "noprime");
+
+    return 0;
+}
