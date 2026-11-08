@@ -1,0 +1,38 @@
+#include <stdio.h>
+
+int main(void)
+{
+    int n;
+    int previous = 0, current = 0;
+
+    scanf("%d", &n);
+
+    for (int i = 0; i < n; i++)
+    {
+        previous = current;
+        scanf("%d", &current);
+    }
+
+    if (current == 0)
+    {
+        printf("UP\n");
+    }
+    else if (current == 15)
+    {
+        printf("DOWN\n");
+    }
+    else if (n == 1)
+    {
+        printf("-1\n");
+    }
+    else if (current > previous)
+    {
+        printf("UP\n");
+    }
+    else
+    {
+        printf("DOWN\n");
+    }
+
+    return 0;
+}
