@@ -1,0 +1,36 @@
+#include <stdio.h>
+
+char s[100001];
+
+int main(void)
+{
+    scanf("%100000s", s);
+
+    int balance = 0;
+
+    for (int i = 0; s[i] != '\0'; i++)
+    {
+        if (s[i] == 'a')
+        {
+            balance++;
+        }
+        else if (s[i] == 'b')
+        {
+            balance--;
+        }
+        else
+        {
+            printf("Bad\n");
+            return 0;
+        }
+
+        if (balance < 0)
+        {
+            printf("Bad\n");
+            return 0;
+        }
+    }
+
+    printf("%s\n", balance == 0 ? "Good" : "Bad");
+    return 0;
+}
