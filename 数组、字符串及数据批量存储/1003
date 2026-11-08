@@ -1,0 +1,46 @@
+#include<stdio.h>
+int main()
+{
+    int k,n,a[100],m;
+    scanf("%d %d %d",&n,&k,&m);
+    
+    for(int i=0;i<n;i++)
+    {
+        a[i]=1;
+    }
+    
+    int count=0;
+    int pos=k;
+    int left=n;
+    while(left>1)
+    {
+        if(a[pos]==1)
+        {
+            count++;
+            
+            if(count==m)
+            {
+                a[pos]=0;
+                left--;
+                count=0;
+            }
+        }
+        
+        pos++;
+        
+        if(pos==n)
+        {
+            pos=0;
+        }
+        
+    }
+    for(int i=0;i<n;i++)
+    {
+        if(a[i]==1)
+        {
+            printf("%d\n",i);
+            break;
+        }
+    }
+    return 0;
+}
