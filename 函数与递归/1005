@@ -1,0 +1,49 @@
+#include <stdio.h>
+#include <string.h>
+
+int main(void)
+{
+    int T;
+    scanf("%d", &T);
+
+    while (T--)
+    {
+        char a[51], b[51];
+        int result[105] = {0};
+
+        scanf("%50s %50s", a, b);
+
+        int lenA = (int)strlen(a);
+        int lenB = (int)strlen(b);
+
+        for (int i = 0; i < lenA; i++)
+        {
+            for (int j = 0; j < lenB; j++)
+            {
+                result[i + j] +=
+                    (a[lenA - 1 - i] - '0') *
+                    (b[lenB - 1 - j] - '0');
+            }
+        }
+
+        for (int i = 0; i < lenA + lenB; i++)
+        {
+            result[i + 1] += result[i] / 10;
+            result[i] %= 10;
+        }
+
+        int top = lenA + lenB;
+        while (top > 0 && result[top] == 0)
+        {
+            top--;
+        }
+
+        for (int i = top; i >= 0; i--)
+        {
+            printf("%d", result[i]);
+        }
+        printf("\n");
+    }
+
+    return 0;
+}
