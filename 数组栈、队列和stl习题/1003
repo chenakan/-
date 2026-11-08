@@ -1,0 +1,41 @@
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+
+char a[20][1001];
+
+int compare(const void *p, const void *q)
+{
+    const char *x = (const char *)p;
+    const char *y = (const char *)q;
+    char xy[2002], yx[2002];
+
+    strcpy(xy, x);
+    strcat(xy, y);
+
+    strcpy(yx, y);
+    strcat(yx, x);
+
+    return strcmp(yx, xy);
+}
+
+int main(void)
+{
+    int n;
+    scanf("%d", &n);
+
+    for (int i = 0; i < n; i++)
+    {
+        scanf("%1000s", a[i]);
+    }
+
+    qsort(a, n, sizeof(a[0]), compare);
+
+    for (int i = 0; i < n; i++)
+    {
+        printf("%s", a[i]);
+    }
+    printf("\n");
+
+    return 0;
+}
