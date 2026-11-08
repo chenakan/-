@@ -1,0 +1,44 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+long long a[100000];
+long long diff[100000];
+
+int compare(const void *p, const void *q)
+{
+    long long x = *(const long long *)p;
+    long long y = *(const long long *)q;
+    return (x < y) - (x > y);
+}
+
+int main(void)
+{
+    int n, k;
+    scanf("%d %d", &n, &k);
+
+    for (int i = 0; i < n; i++)
+    {
+        scanf("%lld", &a[i]);
+    }
+
+    long long total = 0;
+
+    for (int i = 0; i < n; i++)
+    {
+        long long b;
+        scanf("%lld", &b);
+
+        total += b;
+        diff[i] = a[i] - b;
+    }
+
+    qsort(diff, n, sizeof(diff[0]), compare);
+
+    for (int i = 0; i < k; i++)
+    {
+        total += diff[i];
+    }
+
+    printf("%lld\n", total);
+    return 0;
+}
