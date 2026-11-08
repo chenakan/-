@@ -1,0 +1,39 @@
+#include <stdio.h>
+
+int a[8];
+int used[9] = {0};
+
+
+void dfs(int pos)
+{
+    if (pos == 8)
+    {
+        for (int i = 0; i < 8; i++)
+        {
+            if (i > 0)
+                printf(" ");
+            printf("%d", a[i]);
+        }
+        printf("\n");
+        return;
+    }
+
+    for (int num = 1; num <= 8; num++)
+    {
+        if (!used[num])
+        {
+            a[pos] = num;
+            used[num] = 1;
+
+            dfs(pos + 1);
+
+            used[num] = 0;
+        }
+    }
+}
+
+int main(void)
+{
+    dfs(0);
+    return 0;
+}
